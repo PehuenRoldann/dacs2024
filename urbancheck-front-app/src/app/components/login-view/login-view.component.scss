@@ -1,0 +1,202 @@
+$font_family: Verdana, Geneva, Tahoma, sans-serif;
+$porcentaje_img_div: 62%;
+$porcentaje_form_div: 100% - $porcentaje_img_div;
+
+.login-main-div {
+    display: flex;
+    flex-direction: column;
+    //background-color: red;
+    height: 100vh;
+}
+
+.image-div {
+    // flex: 3;
+    height: $porcentaje_img_div;
+
+    background-image: url("../../../assets/images/map.webp");
+    background-size: auto;
+
+    div {
+        height: 100%;
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        // background-color: rgba(128, 128, 128, 0.459);
+        background: linear-gradient(
+            0deg,
+            rgba(31, 31, 31, 1) 0%,
+            rgba(128, 128, 128, 0.459) 45%
+        );
+    }
+}
+
+.login-form-div {
+    // flex: 5;
+    height: 100%;
+    // ackground-color: black;
+    background-color: rgb(31, 31, 31);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#form-container {
+    display: flex;
+    flex-direction: column;
+    color: white;
+
+    justify-content: space-around;
+    align-items: center;
+
+    // background-color: blue; // DEBUG
+    width: 100%;
+
+    div {
+        margin: 10px;
+    }
+
+    label {
+        font-family: $font_family;
+
+        font-size: 1.3rem;
+        display: block;
+        margin-bottom: 2px;
+
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        padding: 10px;
+        border-radius: 10px;
+        width: 70vw;
+    }
+}
+
+// This div contains the "Login" and "Register" buttons
+.form-buttons-div {
+    padding-top: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    // background-color: red;
+    width: 100%;
+
+    button {
+        font-size: 1.3rem;
+        font-family: $font_family;
+        width: 6em;
+        padding: 15px 0 15px 0;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+}
+
+.options-div {
+    display: flex;
+    //flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    //background-color: red;
+    width: 100%;
+
+    div {
+        display: flex;
+    }
+
+    input[type="checkbox"] {
+        padding: 10px;
+        margin: 2px 10px 2px 0;
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+    }
+
+    p {
+        display: inline-block;
+        font-size: 1rem;
+        //background-color: blue;
+    }
+
+    a {
+        color: red;
+        font-family: $font_family;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .login-main-div {
+        flex-direction: row;
+    }
+
+    $porcentaje_img_div: 62%;
+    $porcentaje_form_div: 100% - $porcentaje_img_div;
+
+    .login-form-div {
+        width: $porcentaje_form_div;
+        height: 100vh;
+        border-left: 2px solid black;
+
+        #form-container {
+            .user-field {
+                width: 70%;
+                margin-top: 2.5rem;
+            }
+
+            label {
+                // font-size: 16pt;
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+            input[type="text"],
+            input[type="password"] {
+                font-size: 1rem;
+                padding: 10px;
+                border-radius: 10px;
+                width: 100%;
+            }
+        }
+    }
+
+    .image-div {
+        width: $porcentaje_img_div;
+        height: 100vh;
+
+        // background-image: url("../../../assets/images/map.web");
+        background-size: cover;
+
+        border-right: 5px solid black;
+
+        div {
+            height: 100%;
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(75, 75, 75, 0.5);
+            // background: linear-gradient(90deg, rgba(75, 75, 75, 0.8) 61%, rgba(0, 0, 0, 1) 100%);
+        }
+    }
+
+    // This div contains the "Login" and "Register" buttons
+    .form-buttons-div {
+        padding-top: 5vh;
+
+        // background-color: red;
+        width: 100%;
+
+        button {
+            padding: 10px 0 10px 0;
+            font-size: 1rem;
+            width: 10rem;
+        }
+    }
+}
