@@ -1,19 +1,23 @@
 $font_family: Verdana, Geneva, Tahoma, sans-serif;
-$porcentaje_img_div: 62%;
+$porcentaje_img_div: 20%;
 $porcentaje_form_div: 100% - $porcentaje_img_div;
+
+$grey_filter_color: rgba(59, 59, 59, 0.562);
 
 .login-main-div {
     display: flex;
     flex-direction: column;
     //background-color: red;
     height: 100vh;
+    background-image: url("../../../assets/images/map.webp");
 }
 
 .image-div {
     // flex: 3;
+    
     height: $porcentaje_img_div;
 
-    background-image: url("../../../assets/images/map.webp");
+    // background-image: url("../../../assets/images/map.webp");
     background-size: auto;
 
     div {
@@ -23,21 +27,22 @@ $porcentaje_form_div: 100% - $porcentaje_img_div;
         display: flex;
         align-items: center;
         justify-content: center;
+        background-color: $grey_filter_color;
 
         // background-color: rgba(128, 128, 128, 0.459);
-        background: linear-gradient(
+        /* background: linear-gradient(
             0deg,
             rgba(31, 31, 31, 1) 0%,
             rgba(128, 128, 128, 0.459) 45%
-        );
+        ); */
     }
 }
 
 .login-form-div {
     // flex: 5;
     height: 100%;
-    // ackground-color: black;
-    background-color: rgb(31, 31, 31);
+    background-color: $grey_filter_color;
+    // background-color: rgb(31, 31, 31);
 
     display: flex;
     align-items: center;
