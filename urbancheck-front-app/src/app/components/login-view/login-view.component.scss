@@ -3,6 +3,7 @@ $porcentaje_img_div: 20%;
 $porcentaje_form_div: 100% - $porcentaje_img_div;
 
 $grey_filter_color: rgba(59, 59, 59, 0.562);
+$grey_solid_color: rgb(43, 42, 42);
 
 .login-main-div {
     display: flex;
@@ -29,20 +30,12 @@ $grey_filter_color: rgba(59, 59, 59, 0.562);
         justify-content: center;
         background-color: $grey_filter_color;
 
-        // background-color: rgba(128, 128, 128, 0.459);
-        /* background: linear-gradient(
-            0deg,
-            rgba(31, 31, 31, 1) 0%,
-            rgba(128, 128, 128, 0.459) 45%
-        ); */
     }
 }
 
 .login-form-div {
-    // flex: 5;
     height: 100%;
     background-color: $grey_filter_color;
-    // background-color: rgb(31, 31, 31);
 
     display: flex;
     align-items: center;
@@ -57,7 +50,6 @@ $grey_filter_color: rgba(59, 59, 59, 0.562);
     justify-content: space-around;
     align-items: center;
 
-    // background-color: blue; // DEBUG
     width: 100%;
 
     div {
@@ -106,10 +98,8 @@ $grey_filter_color: rgba(59, 59, 59, 0.562);
 
 .options-div {
     display: flex;
-    //flex-direction: column;
     align-items: center;
     justify-content: center;
-    //background-color: red;
     width: 100%;
 
     div {
@@ -126,7 +116,6 @@ $grey_filter_color: rgba(59, 59, 59, 0.562);
     p {
         display: inline-block;
         font-size: 1rem;
-        //background-color: blue;
     }
 
     a {
@@ -145,6 +134,7 @@ $grey_filter_color: rgba(59, 59, 59, 0.562);
 
     .login-form-div {
         width: $porcentaje_form_div;
+        background-color: $grey_solid_color;
         height: 100vh;
         border-left: 2px solid black;
 
@@ -173,7 +163,6 @@ $grey_filter_color: rgba(59, 59, 59, 0.562);
         width: $porcentaje_img_div;
         height: 100vh;
 
-        // background-image: url("../../../assets/images/map.web");
         background-size: cover;
 
         border-right: 5px solid black;
@@ -187,7 +176,6 @@ $grey_filter_color: rgba(59, 59, 59, 0.562);
             justify-content: center;
 
             background: rgba(75, 75, 75, 0.5);
-            // background: linear-gradient(90deg, rgba(75, 75, 75, 0.8) 61%, rgba(0, 0, 0, 1) 100%);
         }
     }
 
@@ -195,7 +183,6 @@ $grey_filter_color: rgba(59, 59, 59, 0.562);
     .form-buttons-div {
         padding-top: 5vh;
 
-        // background-color: red;
         width: 100%;
 
         button {
