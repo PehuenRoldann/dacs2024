@@ -1,9 +1,12 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginViewComponent } from './components/login-view/login-view.component';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { initializeKeycloak } from './core/init/keycloak-init.factory';
+import { ApiService } from './core/services/apiservice.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -11,10 +14,19 @@ import { LoginViewComponent } from './components/login-view/login-view.component
   ],
   imports: [
     BrowserModule,
+    KeycloakAngularModule,
     AppRoutingModule,
-    LoginViewComponent
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService],
+    },
+    ApiService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

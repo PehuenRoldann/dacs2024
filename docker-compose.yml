@@ -7,7 +7,7 @@ services:
     volumes:
       #- ./web-app/browser:/usr/share/nginx/html/urbancheck:ro
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./web-app/browser/:/usr/share/nginx/html/urbancheck:ro
+      - ./urbancheck-fe-build/:/usr/share/nginx/html/urbancheck
       - ./test/:/test:ro
     restart: unless-stopped
       #    command: /bin/bash -c "chmod -R 755 /web-app && nginx -g 'daemon off'"
@@ -17,10 +17,12 @@ services:
       - dacs2024_network
 
   keycloak:
-    image: quay.io/keycloak/keycloak:latest
+    image: quay.io/keycloak/keycloak:22.0.1
     container_name: dacs2024-keycloak
     ports:
       - "8888:8080"
+    volumes:
+      - ./urb-keycloak-theme/:/opt/keycloak/themes
     restart: unless-stopped 
     command: ["start-dev"]
     environment:
