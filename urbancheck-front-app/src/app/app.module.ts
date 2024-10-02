@@ -7,10 +7,14 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './core/init/keycloak-init.factory';
 import { ApiService } from './core/services/apiservice.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MapCommonComponent } from './components/map-common/map-common.component';
+import { ReclamoModalComponent } from './components/reclamo-modal/reclamo-modal.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MapCommonComponent,
+    ReclamoModalComponent,
   ],
   imports: [
     BrowserModule,
