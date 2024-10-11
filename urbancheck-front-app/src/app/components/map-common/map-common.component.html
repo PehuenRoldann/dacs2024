@@ -1,26 +1,75 @@
-<div id="map"></div>
 <!-- <app-reclamo-modal></app-reclamo-modal> -->
+<div id="map-container">
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="myModalLabel">Ubicación del clic</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p id="modal-coordinates">Coordenadas: </p>
-          <p>Latitud: {{currentCoorsd.lat}}</p>
-          <p>Longitud: {{currentCoorsd.lng}}</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="removeLastMark()">Cerrar</button>
-        </div>
+    <div class="spinner-container" [ngStyle]="{'display': (mapStatus === 0) ? 'flex' : 'none'}">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
     </div>
-  </div>
+    <div [ngStyle]="{'visibility': (mapStatus === 1) ? 'visible' : 'hidden'}">
+      <div id="map"></div>
+    </div>
+    <div [ngStyle]="{'visibility': (mapStatus === 2) ? 'visible' : 'hidden'}">
+        <h1>There has been a problem with the map!!</h1>
+    </div>
+
+
+    <nav id="nav-bar">
+        <span class="nav-button"
+            ><img src="assets/images/Vectorperson.svg" alt=""
+        /></span>
+        <span class="nav-button"
+            ><img src="assets/images/megaphone.svg" alt=""
+        /></span>
+        <span class="nav-button"
+            ><img src="assets/images/notices-board.svg" alt=""
+        /></span>
+    </nav>
+</div>
+
+<!-- Modal -->
+<div
+    class="modal fade"
+    id="newTicketConfModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">
+                    Confirmar nuevo reclamo!
+                </h5>
+            </div>
+            <div class="modal-body">
+              <h5>Desea crear un nuevo reclamo en esta ubicación?</h5>
+                <p id="modal-coordinates">Coordenadas:</p>
+                <p>Latitud: {{ currentCoorsd.lat }}</p>
+                <p>Longitud: {{ currentCoorsd.lng }}</p>
+            </div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                    (click)="removeLastMark()"
+                  >
+                    Cerrar
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-dismiss="modal"
+                    (click)="openModal('ticketCrationModal')"
+                >
+                    Confirmar!
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<app-ticket-creation-modal [modalId]="'ticketCrationModal'"></app-ticket-creation-modal>

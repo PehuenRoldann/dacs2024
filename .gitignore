@@ -7,6 +7,7 @@
 /pnpm-lock.yaml
 /yarn.lock
 web-app/
+urbancheck-fe-build/
 
 # Angular specific files
 .angular

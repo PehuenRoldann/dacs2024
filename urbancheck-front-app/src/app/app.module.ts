@@ -8,13 +8,15 @@ import { initializeKeycloak } from './core/init/keycloak-init.factory';
 import { ApiService } from './core/services/apiservice.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MapCommonComponent } from './components/map-common/map-common.component';
-import { ReclamoModalComponent } from './components/reclamo-modal/reclamo-modal.component';
+import { TicketCreationModalComponent } from './components/ticket-creation-modal/ticket-creation-modal.component';
+// import { ReclamoModalComponent } from './components/reclamo-modal/reclamo-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapCommonComponent,
-    ReclamoModalComponent,
+    TicketCreationModalComponent,
+//    ReclamoModalComponent,
   ],
   imports: [
     BrowserModule,

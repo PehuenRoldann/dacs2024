@@ -6,4 +6,5 @@ export const environment = {
     clientId: "urbancheck-fe",
   },
   backendForFrontendUrl: "/api",
+  mapboxApiKey: "",
 };
