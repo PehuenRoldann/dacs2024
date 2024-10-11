@@ -39,8 +39,7 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-environment.*.ts
-
+urbancheck-front-app/src/environments/environment.*.ts
 # Output of 'npm pack'
 *.tgz
 
