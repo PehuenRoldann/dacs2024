@@ -41,6 +41,7 @@ export class TicketCreationModalComponent {
 
   nextStep() {
     this.processStep++;
+    this.ticket.dateTime = Date.now();
   }
   prevStep() {
     this.processStep--;
@@ -49,5 +50,17 @@ export class TicketCreationModalComponent {
   CancelTicket() {
     this.ticket = new Ticket();
     this.processStep = 0;
+  }
+
+  formatDateTime(timestamp: number): string {
+    const date = new Date(timestamp);
+
+    const day = ('0' + date.getDate()).slice(-2); // Día con ceros a la izquierda
+    const month = ('0' + (date.getMonth() + 1)).slice(-2); // Mes con ceros a la izquierda
+    const year = date.getFullYear(); // Año
+    const hours = ('0' + date.getHours()).slice(-2); // Horas con ceros a la izquierda
+    const minutes = ('0' + date.getMinutes()).slice(-2); // Minutos con ceros a la izquierda
+
+    return `${day}/${month}/${year} ${hours}:${minutes}`; // Retorna el formato deseado
   }
 }

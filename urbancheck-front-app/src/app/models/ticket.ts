@@ -7,7 +7,7 @@ export class Ticket {
   private _lat: number = 0;
   private _lng: number = 0;
   private _finalCost: number = 0;
-  private _dateTime: Date = new Date();
+  private _dateTime: number = Date.now();
   private _dependency!: MunicipalDependencies;
   private _createdBy: string = '';
   private _modifiedBy: string = '';
@@ -59,11 +59,11 @@ export class Ticket {
   }
 
   // Getter y Setter para _dateTime
-  get dateTime(): Date {
+  get dateTime(): number {
     return this._dateTime;
   }
 
-  set dateTime(value: Date) {
+  set dateTime(value: number) {
     this._dateTime = value;
   }
 
