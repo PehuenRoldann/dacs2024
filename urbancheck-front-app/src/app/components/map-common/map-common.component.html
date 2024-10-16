@@ -72,4 +72,4 @@
 </div>
 
 
-<app-ticket-creation-modal [modalId]="'ticketCrationModal'"></app-ticket-creation-modal>
+<app-ticket-creation-modal [modalId]="'ticketCrationModal'" (cancelTicket)="removeLastMark($event)"/>

@@ -9,6 +9,8 @@ import { ApiService } from './core/services/apiservice.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MapCommonComponent } from './components/map-common/map-common.component';
 import { TicketCreationModalComponent } from './components/ticket-creation-modal/ticket-creation-modal.component';
+import { WelcomeViewComponent } from './components/welcome-view/welcome-view.component';
+import { TicketDataJsonService } from './services/ticket-data-json.service';
 // import { ReclamoModalComponent } from './components/reclamo-modal/reclamo-modal.component';
 
 @NgModule({
@@ -16,6 +18,7 @@ import { TicketCreationModalComponent } from './components/ticket-creation-modal
     AppComponent,
     MapCommonComponent,
     TicketCreationModalComponent,
+    WelcomeViewComponent,
 //    ReclamoModalComponent,
   ],
   imports: [
@@ -33,6 +36,7 @@ import { TicketCreationModalComponent } from './components/ticket-creation-modal
       deps: [KeycloakService],
     },
     ApiService,
+    TicketDataJsonService
   ],
   bootstrap: [AppComponent]
 })

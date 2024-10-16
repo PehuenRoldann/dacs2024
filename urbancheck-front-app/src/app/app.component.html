@@ -1,4 +1,15 @@
 
+
+<div *ngIf="!isLogueado; else mapTemplate">
+	<h1>Bienvenido a Urbancheck!</h1>
+	<button *ngIf="isLogueado" type="button" (click)="cerrarSesion()">Cerrar Session</button>
+	<button *ngIf="!isLogueado" type="button" (click)="iniciarSesion()">Iniciar Session</button>
+</div>
+
+<ng-template #mapTemplate>
+	<app-map-common></app-map-common>
+</ng-template>
+
 <!-- <h1>Mi Aplicación Angular {{title}} con Keycloak</h1>
 
 		<button *ngIf="isLogueado" type="button" (click)="cerrarSesion()">Cerrar Session</button>
@@ -65,4 +76,3 @@
 </ng-container>
  -->
 
-<app-map-common></app-map-common>

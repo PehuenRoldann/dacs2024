@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import MunicipalDependencies from 'src/app/models/municipalDependencie';
 import { Ticket } from 'src/app/models/ticket';
 
@@ -13,6 +13,8 @@ export class TicketCreationModalComponent {
   public readonly maxLengthDesc: number = 250;
   public processStep: number = 0;
   public ticket = new Ticket();
+
+  public cancelCreation = new EventEmitter();
 
   /**
    * returns an array with the names of the dependencies
@@ -50,6 +52,7 @@ export class TicketCreationModalComponent {
   CancelTicket() {
     this.ticket = new Ticket();
     this.processStep = 0;
+    this.cancelCreation.emit();
   }
 
   formatDateTime(timestamp: number): string {

@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
-import mapboxgl, { ErrorEvent } from "mapbox-gl";
+import mapboxgl, { ErrorEvent, Marker } from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import { BehaviorSubject, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
+import { MarkerData } from "../models/markerData";
 // import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 // import { MapboxAddressAutofill, MapboxSearchBox, config} from '@mapbox/search-js-web';
 
@@ -127,5 +128,19 @@ export class GeolocationService {
   // Method to update coordinates
   updateCoords(newCoords: { lng: number; lat: number }): void {
     this.lastCoordsSubject.next(newCoords);
+  }
+
+
+
+  DrawMarkers(markersData: MarkerData[]): void {
+
+    let markers = new Array<Marker>();
+            
+    markersData.forEach(marker => {
+      let markerMapbox = new Marker();
+      markerMapbox.setLngLat(new mapboxgl.LngLat(marker.lng, marker.lat));
+      markerMapbox.addTo(this.map);
+    });
+
   }
 }

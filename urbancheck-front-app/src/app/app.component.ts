@@ -10,7 +10,7 @@ import { ITestResponse } from './core/models/response.interface';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'dacs2024';
+  title = 'Urbancheck';
   public isLogueado = false;
   public testResponse : ITestResponse  | null = null;
   public apiPing = "";
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     this.apiService.getTest().subscribe(resp => {this.testResponse= resp});
     this.apiService.getPing().subscribe(resp => {this.apiPing= resp});
     this.apiService.getConectorPing().subscribe(resp => {this.apiConectorPing= resp});
-    console.log ("role=====>", this.role );
+    // console.log ("role=====>", this.role );
     
     /* if(this.isLogueado && !this.role){
       this.keycloak.logout();
