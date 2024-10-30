@@ -32,6 +32,13 @@ export class GeolocationService {
     new BehaviorSubject<number>(0);
   public mapStatus$: Observable<number> = this.mapStatusSubject.asObservable();
 
+
+  // Observabole que permite saber cual fue el último marcador 
+  // clickeado, sin traspasar lógica de mapbox
+  private lastMarkerClickedSubject: BehaviorSubject<MarkerData> =
+    new BehaviorSubject<MarkerData>({id: -1, lng: 0, lat: 0});
+  public lastMarkerClickedSubject$: Observable<MarkerData> = this.lastMarkerClickedSubject.asObservable();
+
   private ACCESS_TOKEN: string = environment.mapboxApiKey;
 
   constructor() {}
@@ -97,12 +104,14 @@ export class GeolocationService {
 
       // Actualizar las coordenadas solo al hacer clic en el mapa
       map.on("click", (event: mapboxgl.MapMouseEvent) => {
+        
         const clickedCoords = event.lngLat;
         this.addMarker(clickedCoords);
         this.updateCoords({ lng: clickedCoords.lng, lat: clickedCoords.lat });
       });
 
       this.mapStatusSubject.next(1);
+
     } catch (error) {
       console.log("Error while loading the map: " + error);
       this.mapStatusSubject.next(2);
@@ -139,8 +148,21 @@ export class GeolocationService {
     markersData.forEach(marker => {
       let markerMapbox = new Marker();
       markerMapbox.setLngLat(new mapboxgl.LngLat(marker.lng, marker.lat));
+
+      markerMapbox.getElement().addEventListener('click', (event) => {
+
+        event.stopPropagation();
+        this.updateLastMarkerClicked(marker);
+      })
+
       markerMapbox.addTo(this.map);
     });
 
+  }
+
+
+  updateLastMarkerClicked(markerData: MarkerData): void {
+
+    this.lastMarkerClickedSubject.next(markerData);
   }
 }

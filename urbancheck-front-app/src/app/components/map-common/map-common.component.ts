@@ -34,6 +34,12 @@ export class MapCommonComponent implements OnInit {
       this.mapStatus = status;
     });
 
+    this.geoService.lastMarkerClickedSubject$.subscribe((markerData) => {
+      console.log("Marker data: " + markerData);
+      
+      this.openModal('ticketViewModal');
+    })
+
     let markersData = await this.ticketDataService.GetMarkers();
     this.geoService.DrawMarkers(markersData);
   }

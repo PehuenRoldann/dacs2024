@@ -11,6 +11,7 @@ import { MapCommonComponent } from './components/map-common/map-common.component
 import { TicketCreationModalComponent } from './components/ticket-creation-modal/ticket-creation-modal.component';
 import { WelcomeViewComponent } from './components/welcome-view/welcome-view.component';
 import { TicketDataJsonService } from './services/ticket-data-json.service';
+import { TicketViewModalComponent } from './components/ticket-view-modal/ticket-view-modal.component';
 // import { ReclamoModalComponent } from './components/reclamo-modal/reclamo-modal.component';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { TicketDataJsonService } from './services/ticket-data-json.service';
     MapCommonComponent,
     TicketCreationModalComponent,
     WelcomeViewComponent,
+    TicketViewModalComponent,
 //    ReclamoModalComponent,
   ],
   imports: [

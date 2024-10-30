@@ -1,4 +1,5 @@
 import MunicipalDependencies from "./municipalDependencie";
+import { TicketStates } from "./ticketStates";
 
 export class Ticket {
   private _id: string = '';
@@ -11,8 +12,12 @@ export class Ticket {
   private _dependency!: MunicipalDependencies;
   private _createdBy: string = '';
   private _modifiedBy: string = '';
+  private _state: TicketStates = TicketStates.Creado;
   private _imgUrl: string = '';
 
+  constructor () {}
+
+  
   // Getter y Setter para _id
   get id(): string {
     return this._id;
