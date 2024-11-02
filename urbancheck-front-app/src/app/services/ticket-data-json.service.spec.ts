@@ -12,7 +12,7 @@ describe('TicketDataJsonService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [TicketDataJsonService],
-      imports: [HttpClientTestingModule, Ticket],
+      imports: [HttpClientTestingModule],
     });
     service = TestBed.inject(TicketDataJsonService);
   });
