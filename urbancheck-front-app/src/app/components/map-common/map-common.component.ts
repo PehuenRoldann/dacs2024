@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
+import { TicketDataService } from "src/app/interfaces/ticket-data-service";
 import { GeolocationService } from "src/app/services/geolocation.service";
+import { TicketDataJsonService } from "src/app/services/ticket-data-json.service";
 /* import mapboxgl from 'mapbox-gl'; */
 
 declare var bootstrap: any;
@@ -13,9 +15,12 @@ export class MapCommonComponent implements OnInit {
   public currentCoorsd: { lng: number; lat: number } = { lng: 0, lat: 0 };
   public mapStatus!: number;
 
-  constructor(private geoService: GeolocationService) {}
+  constructor(
+    private geoService: GeolocationService,
+    private ticketDataService: TicketDataJsonService
+  ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.geoService.initializeMap('map');
 
     this.geoService.lastCoords$.subscribe((coords) => {
@@ -28,6 +33,15 @@ export class MapCommonComponent implements OnInit {
     this.geoService.mapStatus$.subscribe((status) => {
       this.mapStatus = status;
     });
+
+    this.geoService.lastMarkerClickedSubject$.subscribe((markerData) => {
+      console.log("Marker data: " + markerData);
+      
+      this.openModal('ticketViewModal');
+    })
+
+    let markersData = await this.ticketDataService.GetMarkers();
+    this.geoService.DrawMarkers(markersData);
   }
 
   /**
@@ -44,7 +58,7 @@ export class MapCommonComponent implements OnInit {
     }
   }
 
-  public removeLastMark(): void {
+  public removeLastMark(event?: Event): void {
     this.geoService.removeLastMark();
   }
 }
