@@ -10,8 +10,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { MapCommonComponent } from './components/map-common/map-common.component';
 import { TicketCreationModalComponent } from './components/ticket-creation-modal/ticket-creation-modal.component';
 import { WelcomeViewComponent } from './components/welcome-view/welcome-view.component';
-import { TicketDataJsonService } from './services/ticket-data-json.service';
 import { TicketViewModalComponent } from './components/ticket-view-modal/ticket-view-modal.component';
+
+// INTERFACES TOKENS Y SERVICIOS IMPORTS
+import { TicketDataJsonService } from './services/ticket-data-json.service';
+import { TICKET_SERVICE_INTERFACE_TOKEN } from './interfaces/ticket.service.interface';
+
+import { MapboxService } from './services/mapbox.service';
+import { MAP_SERVICE_INTERFACE_TOKEN } from './interfaces/map.service.interface';
 // import { ReclamoModalComponent } from './components/reclamo-modal/reclamo-modal.component';
 
 @NgModule({
@@ -21,14 +27,14 @@ import { TicketViewModalComponent } from './components/ticket-view-modal/ticket-
     TicketCreationModalComponent,
     WelcomeViewComponent,
     TicketViewModalComponent,
-//    ReclamoModalComponent,
+    //    ReclamoModalComponent,
   ],
   imports: [
     BrowserModule,
     KeycloakAngularModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     {
@@ -38,8 +44,15 @@ import { TicketViewModalComponent } from './components/ticket-view-modal/ticket-
       deps: [KeycloakService],
     },
     ApiService,
-    TicketDataJsonService
+    {
+      provide: TICKET_SERVICE_INTERFACE_TOKEN,
+      useClass: TicketDataJsonService,
+    },
+    {
+      provide: MAP_SERVICE_INTERFACE_TOKEN,
+      useClass: MapboxService
+    }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

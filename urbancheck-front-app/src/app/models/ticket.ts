@@ -117,4 +117,8 @@ export class Ticket {
   set imgUrl(value: string) {
     this._imgUrl = value;
   }
+
+  get actualDate() {
+    return new Date(this.dateTime)
+  }
 }

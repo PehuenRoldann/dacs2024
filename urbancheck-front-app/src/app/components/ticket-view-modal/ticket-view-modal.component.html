@@ -3,25 +3,51 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">
-            TICKET VIEW MODAL
+          <h1 class="modal-title fs-5" id="exampleModalLabel" style="width: 100%; text-align: center;">
+            {{isTicketLoaded ? "Ticket #"+ticket.id : "Buscando..." }}
           </h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          
-            <div *ngIf="!isTicketLoaded" style="display: flex; align-items: center; justify-content: center; width: 100%;">
+        <div class="modal-body modal-body-scroll">
+
+            <div *ngIf="!isTicketLoaded; else ticketDataTemplate" style="display: flex; align-items: center; justify-content: center; width: 100%;">
                 <div class="spinner-border" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
 
+            <ng-template #ticketDataTemplate>
+
+              <!-- Tabla que con posición fixeada -->
+              <div id="table-data-container">
+                <table>
+                  <tr>
+                    <th>Creado por</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                  </tr>
+                  <tr>
+                    <td>#{{ticket.createdBy}}</td>
+                    <td>{{dateFromTicket}}</td>
+                    <td>{{ticket.state}}</td>
+                  </tr>
+                </table>
+              </div>
+
+              <div id="description-container">
+                <h4>Descripción</h4>
+                <textarea name="" id="" readonly [value]="ticket.description"></textarea>
+              </div>
+
+              <img [src]="ticket.imgUrl ? ticket.imgUrl : 'assets/images/Image_not_available.png'" alt="Ticket_image">
+
+
+            </ng-template>
+
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary" style="display: flex; justify-content: center;">Suscribirse</button>
         </div>
       </div>
     </div>
   </div>
-  

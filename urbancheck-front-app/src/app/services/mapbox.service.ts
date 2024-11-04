@@ -4,6 +4,7 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 import { BehaviorSubject, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { MarkerData } from "../models/markerData";
+import { MapServiceInterface } from "../interfaces/map.service.interface";
 // import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 // import { MapboxAddressAutofill, MapboxSearchBox, config} from '@mapbox/search-js-web';
 
@@ -13,7 +14,7 @@ import { MarkerData } from "../models/markerData";
 @Injectable({
   providedIn: "root",
 })
-export class GeolocationService {
+export class MapboxService implements MapServiceInterface {
 
   private map!: mapboxgl.Map;
 
@@ -33,7 +34,7 @@ export class GeolocationService {
   public mapStatus$: Observable<number> = this.mapStatusSubject.asObservable();
 
 
-  // Observabole que permite saber cual fue el último marcador 
+  // Observabole que permite saber cual fue el último marcador
   // clickeado, sin traspasar lógica de mapbox
   private lastMarkerClickedSubject: BehaviorSubject<MarkerData> =
     new BehaviorSubject<MarkerData>({id: -1, lng: 0, lat: 0});
@@ -104,7 +105,7 @@ export class GeolocationService {
 
       // Actualizar las coordenadas solo al hacer clic en el mapa
       map.on("click", (event: mapboxgl.MapMouseEvent) => {
-        
+
         const clickedCoords = event.lngLat;
         this.addMarker(clickedCoords);
         this.updateCoords({ lng: clickedCoords.lng, lat: clickedCoords.lat });
@@ -135,16 +136,16 @@ export class GeolocationService {
   }
 
   // Method to update coordinates
-  updateCoords(newCoords: { lng: number; lat: number }): void {
+  public updateCoords(newCoords: { lng: number; lat: number }): void {
     this.lastCoordsSubject.next(newCoords);
   }
 
 
 
-  DrawMarkers(markersData: MarkerData[]): void {
+  public DrawMarkers(markersData: MarkerData[]): void {
 
     let markers = new Array<Marker>();
-            
+
     markersData.forEach(marker => {
       let markerMapbox = new Marker();
       markerMapbox.setLngLat(new mapboxgl.LngLat(marker.lng, marker.lat));
@@ -161,7 +162,7 @@ export class GeolocationService {
   }
 
 
-  updateLastMarkerClicked(markerData: MarkerData): void {
+  public updateLastMarkerClicked(markerData: MarkerData): void {
 
     this.lastMarkerClickedSubject.next(markerData);
   }
