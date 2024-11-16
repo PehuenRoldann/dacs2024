@@ -38,8 +38,9 @@
                 <h4>Descripción</h4>
                 <textarea name="" id="" readonly [value]="ticket.description"></textarea>
               </div>
-
-              <img [src]="ticket.imgUrl ? ticket.imgUrl : 'assets/images/Image_not_available.png'" alt="Ticket_image">
+              <div class="flex-row-centered-container">
+                <img class="ticket-img" [src]="ticket.imgUrl ? ticket.imgUrl : 'assets/images/Image_not_available.png'" alt="Ticket_image">
+              </div>
 
 
             </ng-template>

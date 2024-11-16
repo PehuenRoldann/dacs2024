@@ -6,3 +6,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+
+.flex-row-centered-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
