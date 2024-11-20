@@ -19,17 +19,13 @@ export class MapCommonComponent implements OnInit {
   @ViewChild(TicketViewModalComponent)
   ticketViewModal!: TicketViewModalComponent;
 
-  /*  constructor(
-    private geoService: MapboxService,
-    private ticketDataService: TicketDataJsonService
-  ) {} */
-
   constructor(
     @Inject(TICKET_SERVICE_INTERFACE_TOKEN) private ticketDataService: TicketServiceInterface,
     @Inject(MAP_SERVICE_INTERFACE_TOKEN) private geoService: MapServiceInterface
   ) {}
 
   async ngOnInit(): Promise<void> {
+    
     this.geoService.initializeMap('map');
 
     this.geoService.lastCoords$.subscribe((coords) => {
