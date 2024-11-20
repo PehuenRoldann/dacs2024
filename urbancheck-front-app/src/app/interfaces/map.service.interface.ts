@@ -8,6 +8,7 @@ export interface MapServiceInterface {
   lastCoords$: Observable<{ lng: number; lat: number }>;
   mapStatus$: Observable<number>;
   lastMarkerClickedSubject$: Observable<MarkerData>;
+  addressFromCoords$: Observable<string>;
 
 
   initializeMap(mapElementId: string): Promise<void>;
@@ -15,6 +16,8 @@ export interface MapServiceInterface {
   updateCoords(newCoords: { lng: number; lat: number }): void;
   DrawMarkers(markersData: MarkerData[]): void;
   updateLastMarkerClicked(markerData: MarkerData): void;
+  UpdateAddressFromCoords(latitude: number, longitude: number): void
+  // getAddressFromCoordinates(latitude: number, longitude: number): Observable<any> 
 }
 
 // Crea el token de inyección

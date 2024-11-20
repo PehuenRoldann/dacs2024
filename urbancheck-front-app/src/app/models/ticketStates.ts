@@ -2,13 +2,13 @@ export enum TicketStates {
 
     Creado = 'Creado',
     Recibido = 'Recibido',
-    Asignado = 'Asignado',
     EnRevision = 'En Revision',
+    Rechazado = 'Rechazado',
     Demorado = 'Demorado',
     Programado = 'Programado',
-    ReProgramado = 'Re programado',
+    Reprogramado = 'Reprogramado',
     Resuleto = 'Resuelto',
     Cerrado = 'Cerrado',
-    Candelado = 'Cancelado'
+    Cancelado = 'Cancelado'
 
 }

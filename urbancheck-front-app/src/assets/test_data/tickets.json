@@ -24,7 +24,7 @@
     "dependency": "Arbolado",
     "createdBy": "user3",
     "modifiedBy": "user4",
-    "state": "En Revision",
+    "state": "Reprogramado",
     "imgUrl": ""
   },
   {
@@ -38,7 +38,7 @@
     "dependency": "Microbasurales",
     "createdBy": "user2",
     "modifiedBy": "user1",
-    "state": "Asignado",
+    "state": "En Revision",
     "imgUrl": ""
   },
   {
@@ -108,7 +108,7 @@
     "dependency": "Conservación de calles",
     "createdBy": "user1",
     "modifiedBy": "user3",
-    "state": "ReProgramado",
+    "state": "Reprogramado",
     "imgUrl": ""
   },
   {
@@ -122,7 +122,7 @@
     "dependency": "Obras Públicas",
     "createdBy": "user3",
     "modifiedBy": "user2",
-    "state": "Asignado",
+    "state": "En Revision",
     "imgUrl": ""
   },
   {

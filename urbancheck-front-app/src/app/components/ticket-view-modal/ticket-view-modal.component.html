@@ -1,16 +1,16 @@
 <!-- Modal -->
 <div class="modal fade" [id]="modalId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
+      <div class="modal-content main-container">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel" style="width: 100%; text-align: center;">
+          <h3 class="modal-title fs-5" id="exampleModalLabel" style="width: 100%; text-align: center;">
             {{isTicketLoaded ? "Ticket #"+ticket.id : "Buscando..." }}
-          </h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </h3>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="ResetConditions()"></button>
         </div>
         <div class="modal-body modal-body-scroll">
 
-            <div *ngIf="!isTicketLoaded; else ticketDataTemplate" style="display: flex; align-items: center; justify-content: center; width: 100%;">
+            <div *ngIf="!isTicketLoaded or !isAddressLoaded; else ticketDataTemplate" style="display: flex; align-items: center; justify-content: center; width: 100%;">
                 <div class="spinner-border" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
@@ -18,28 +18,36 @@
 
             <ng-template #ticketDataTemplate>
 
-              <!-- Tabla que con posición fixeada -->
-              <div id="table-data-container">
-                <table>
-                  <tr>
-                    <th>Creado por</th>
-                    <th>Fecha</th>
-                    <th>Estado</th>
-                  </tr>
-                  <tr>
-                    <td>#{{ticket.createdBy}}</td>
-                    <td>{{dateFromTicket}}</td>
-                    <td>{{ticket.state}}</td>
-                  </tr>
-                </table>
+              <!-- Tabla -->
+              <div class="flex-row-centered-container">
+                <div class="grid-container">
+                  <div class="grid-item header">Creado por</div>
+                  <div class="grid-item header">Fecha</div>
+                  <div class="grid-item header">Estado</div>
+                  <div class="grid-item">{{ticket.createdBy}}</div>
+                  <div class="grid-item">{{dateFromTicket}}</div>
+                  <div class="grid-item ticket-state"><app-pill [ticketState]="ticket.state"/></div>
+                </div>
               </div>
 
-              <div id="description-container">
-                <h4>Descripción</h4>
+              
+
+              <!-- Descripción -->
+              <div class="flex-col-centered-container" id="description_container">
+                <h6 class="title-section">Descripción</h6>
                 <textarea name="" id="" readonly [value]="ticket.description"></textarea>
               </div>
-              <div class="flex-row-centered-container">
+
+              <!-- Imagen -->
+              <div class="flex-col-centered-container">
                 <img class="ticket-img" [src]="ticket.imgUrl ? ticket.imgUrl : 'assets/images/Image_not_available.png'" alt="Ticket_image">
+              </div>
+
+
+              <!-- Dirección -->
+              <div class="flex-col-centered-container" id="address_container">
+                <h6>Dirección</h6>
+                <textarea name="" id="" readonly [value]="address"></textarea>
               </div>
 
 

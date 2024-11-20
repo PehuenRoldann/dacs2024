@@ -18,6 +18,7 @@ import { TICKET_SERVICE_INTERFACE_TOKEN } from './interfaces/ticket.service.inte
 
 import { MapboxService } from './services/mapbox.service';
 import { MAP_SERVICE_INTERFACE_TOKEN } from './interfaces/map.service.interface';
+import { PillComponent } from './components/pill/pill.component';
 // import { ReclamoModalComponent } from './components/reclamo-modal/reclamo-modal.component';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { MAP_SERVICE_INTERFACE_TOKEN } from './interfaces/map.service.interface'
     TicketCreationModalComponent,
     WelcomeViewComponent,
     TicketViewModalComponent,
+    PillComponent,
     //    ReclamoModalComponent,
   ],
   imports: [

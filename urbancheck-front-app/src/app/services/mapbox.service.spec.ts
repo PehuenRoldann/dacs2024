@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { MapboxService } from './mapbox.service';
 
-describe('GeolocationService', () => {
+describe('MapboxService', () => {
   let service: MapboxService;
 
   beforeEach(() => {

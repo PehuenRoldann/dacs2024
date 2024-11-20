@@ -1,7 +1,81 @@
+:root {
+  --bg-color: #6e7f8bec; /* Definimos el color azul */
+}
+
+
+.main-container{
+  background-color: #6e7f8bec;
+  color: white;
+}
+
+.modal-header{
+  height: 3%;
+}
+
 .ticket-img {
 
   max-width: 70vw;
   max-height: 50vh;
 }
 
+.grid-container {
+  display: grid;  /* Configuramos el contenedor como grid */
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
+  /* gap: 6px; */  /* Espacio entre las celdas */
+  row-gap: 4px;
+  border-collapse: collapse;  /* Opcional, para que las celdas no tengan espacios entre ellas */
+  width: 100%;  /* Ajusta al ancho del contenedor o el espacio disponible */
+}
 
+.grid-item {
+  padding: 2px 4px 0 4px;  /* Espacio interno dentro de las celdas */
+  border-bottom: 1px solid white;  /* Estilo de borde opcional */
+  /* margin-top: 2px; */
+  text-align: center;
+  text-justify: distribute;
+  font-size: 12pt;
+}
+
+.header {
+  font-weight: bold;  /* Negrita para las cabeceras */
+  text-align: center;  /* Alinea el texto al centro */
+}
+
+
+#description_container {
+  height: 20vh;
+}
+
+#description_container textarea {
+
+  padding: 10px; /* Añadir relleno */
+  font-size: 16px; /* Cambiar tamaño de fuente */
+  width: 95%; /* Hacer que el textarea ocupe todo el ancho */
+  height: 100%;
+
+}
+
+
+#address_container {
+  height: 12vh;
+}
+
+#address_container textarea {
+  
+  padding: 10px; /* Añadir relleno */
+  font-size: 16px; /* Cambiar tamaño de fuente */
+  width: 95%; /* Hacer que el textarea ocupe todo el ancho */
+  height: 100%;
+}
+
+.title-section{
+  margin-top: 2vh;
+}
+
+textarea {
+  font-size: 10pt;
+  text-align: justify;
+  background-color: #6e7f8bec;
+  color: white;
+  border: 1px solid white;
+}
