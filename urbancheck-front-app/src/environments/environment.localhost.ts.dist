@@ -1,10 +1,12 @@
 export const environment = {
   production: false,
   keycloak: {
-    url: 'http://localhost:8888',
+    url: 'http://localhost:8080',
     realm: 'urbancheck',
     clientId: 'urbancheck-fe',
   },
   backendForFrontendUrl: '/api',
   mapboxApiKey:'',
 };
+
+export var tokenKeycloak = "";

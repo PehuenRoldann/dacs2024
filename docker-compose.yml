@@ -5,31 +5,51 @@ services:
     ports:
       - "80:80"
     volumes:
-      #- ./web-app/browser:/usr/share/nginx/html/urbancheck:ro
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./urbancheck-fe-build/:/usr/share/nginx/html/urbancheck
       - ./test/:/test:ro
+      - ./start-nginx.sh:/start-nginx.sh:ro
     restart: unless-stopped
-      #    command: /bin/bash -c "chmod -R 755 /web-app && nginx -g 'daemon off'"
     depends_on:
       - keycloak
     networks:
       - dacs2024_network
+    # entrypoint: ["/bin/bash", "/start-nginx.sh"]
 
   keycloak:
     image: quay.io/keycloak/keycloak:22.0.1
     container_name: dacs2024-keycloak
     ports:
-      - "8888:8080"
+      - "8080:8080"
     volumes:
       - ./urb-keycloak-theme/:/opt/keycloak/themes
-      - ./realm-config-urbancheck.json:/opt/keycloak/data/import/realm-config-urbancheck.json
+      - ./master-realm.json:/opt/keycloak/data/import/master-realm.json
+      - ./dacs-realm.json:/opt/keycloak/data/import/dacs-realm.json
     restart: unless-stopped 
     command: ["start-dev", "--import-realm"]
     environment:
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
-      - KEYCLOAK_IMPORT=/opt/keycloak/data/import/realm-config-urbancheck.json
+      - KEYCLOAK_IMPORT=/opt/keycloak/data/import/master-realm.json,/opt/keycloak/data/import/dacs-realm.json
+      - KC_FEATURES=scripts
+      - KC_TRANSACTION_MANAGER_ENABLE_RECOVERY=true
+      - KC_ENABLE_SCRIPT_UPLOAD=true
+      - KC_SCRIPTS=true
+    networks:
+      - dacs2024_network
+
+
+  mysql:
+    image: mysql:latest
+    container_name: dacs2024-mysql
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mysql_db
+    volumes:
+      - mysql-data:/var/lib/mysql
     networks:
       - dacs2024_network
 
@@ -37,3 +57,5 @@ networks:
   dacs2024_network:
     driver: bridge
 
+volumes:
+  mysql-data:

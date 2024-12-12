@@ -121,4 +121,21 @@ export class Ticket {
   get actualDate() {
     return new Date(this.dateTime)
   }
+
+
+  static fromJson(json: any): Ticket 
+  { 
+    const dependency = MunicipalDependencies[json.dependencia.nombre.replace(/\s/g, '') as keyof typeof MunicipalDependencies]; 
+    const ticket = new Ticket({ 
+      id: json.id.toString(),
+      description: json.descripcion,
+      lat: json.latitud,
+      lng: json.longitudes,
+      finalCost: json.costoFinal,
+      dateTime: new Date(json.fechaHora).getTime(),
+      dependency: dependency,
+      createdBy: json.creadoPor.email,
+      state: TicketStates[json.estado.replace(/\s/g, '') as keyof typeof TicketStates] }); // Si es necesario, puedes mapear otras propiedades o realizar conversiones adicionales aquí 
+      return ticket;
+  }
 }

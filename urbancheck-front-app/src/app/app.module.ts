@@ -13,12 +13,13 @@ import { WelcomeViewComponent } from './components/welcome-view/welcome-view.com
 import { TicketViewModalComponent } from './components/ticket-view-modal/ticket-view-modal.component';
 
 // INTERFACES TOKENS Y SERVICIOS IMPORTS
-import { TicketDataJsonService } from './services/ticket-data-json.service';
+// import { TicketDataJsonService } from './services/ticket-data-json.service';
 import { TICKET_SERVICE_INTERFACE_TOKEN } from './interfaces/ticket.service.interface';
 
 import { MapboxService } from './services/mapbox.service';
 import { MAP_SERVICE_INTERFACE_TOKEN } from './interfaces/map.service.interface';
 import { PillComponent } from './components/pill/pill.component';
+import { TicketDataApiService } from './services/ticket-data-api.service';
 // import { ReclamoModalComponent } from './components/reclamo-modal/reclamo-modal.component';
 
 @NgModule({
@@ -48,7 +49,8 @@ import { PillComponent } from './components/pill/pill.component';
     ApiService,
     {
       provide: TICKET_SERVICE_INTERFACE_TOKEN,
-      useClass: TicketDataJsonService,
+      //useClass: TicketDataJsonService,
+      useClass: TicketDataApiService
     },
     {
       provide: MAP_SERVICE_INTERFACE_TOKEN,

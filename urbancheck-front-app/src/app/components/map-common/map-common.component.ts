@@ -4,6 +4,8 @@ import { MapServiceInterface, MAP_SERVICE_INTERFACE_TOKEN } from "src/app/interf
 // import { MapboxService } from "src/app/services/mapbox.service";
 // import { TicketDataJsonService } from "src/app/services/ticket-data-json.service";
 import { TicketViewModalComponent } from "../ticket-view-modal/ticket-view-modal.component";
+import { Marker } from "mapbox-gl";
+import { MarkerData } from "src/app/models/markerData";
 /* import mapboxgl from 'mapbox-gl'; */
 
 declare var bootstrap: any;
@@ -18,6 +20,7 @@ export class MapCommonComponent implements OnInit {
   public mapStatus!: number;
   @ViewChild(TicketViewModalComponent)
   ticketViewModal!: TicketViewModalComponent;
+  public markersData!: MarkerData[];
 
   constructor(
     @Inject(TICKET_SERVICE_INTERFACE_TOKEN) private ticketDataService: TicketServiceInterface,
@@ -31,6 +34,7 @@ export class MapCommonComponent implements OnInit {
     this.geoService.lastCoords$.subscribe((coords) => {
       if (coords.lng != 0 && coords.lat != 0) {
         this.currentCoorsd = coords;
+        console.log(`DEBUG >> Coords clicked: \nlongitud: ${coords.lng} \nlatitud: ${coords.lat}`)
         this.openModal('newTicketConfModal');
       }
     });
@@ -40,14 +44,22 @@ export class MapCommonComponent implements OnInit {
     });
 
     this.geoService.lastMarkerClickedSubject$.subscribe((markerData) => {
-      console.log('DEBUG >>> Marker data: ');
-      console.log(markerData);
+      // console.log('DEBUG >>> Marker data: ');
+      //console.log(markerData);
       this.openModal('ticketViewModal');
       this.ticketViewModal.GetTicketWithId(markerData.id.toString());
     });
 
-    let markersData = await this.ticketDataService.GetMarkers();
-    this.geoService.DrawMarkers(markersData);
+    this.ticketDataService.markersData$.subscribe((markerDataRes) => {
+      // console.log('DEBUG >>> Marker data RES: ');
+      //console.log(markerDataRes);
+      this.markersData = markerDataRes.length > 0? markerDataRes : [];
+      // console.log('DEBUG >>> Marker data: ');
+      //console.log(this.markersData);
+      this.geoService.DrawMarkers(this.markersData);
+    })
+
+    this.ticketDataService.UpdateMarkersData();
   }
 
   /**

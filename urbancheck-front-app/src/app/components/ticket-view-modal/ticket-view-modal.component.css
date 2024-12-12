@@ -15,8 +15,9 @@
 .ticket-img {
   border-radius: 5px;
   margin: 5px;
-  width: 95%;           /* Ancho del 95% del contenedor */
-  aspect-ratio: 1 / 1;  /* Relación de aspecto cuadrada */
+  max-width: 90%;           /* Ancho del 95% del contenedor */
+  /* aspect-ratio: 1 / 1; */  /* Relación de aspecto cuadrada */
+  max-height: 50%;
   object-fit: cover;    /* Ajustar la imagen si es necesario */
 }
 

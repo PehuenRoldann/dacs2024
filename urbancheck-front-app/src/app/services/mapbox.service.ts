@@ -40,7 +40,7 @@ export class MapboxService implements MapServiceInterface {
   // Observable que permite saber cual fue el último marcador
   // clickeado, sin traspasar lógica de mapbox
   private lastMarkerClickedSubject: BehaviorSubject<MarkerData> =
-    new BehaviorSubject<MarkerData>({id: -1, lng: 0, lat: 0});
+    new BehaviorSubject<MarkerData>({id: -1, longitud: 0, latitud: 0});
   public lastMarkerClickedSubject$: Observable<MarkerData> = this.lastMarkerClickedSubject.asObservable();
 
 
@@ -154,9 +154,11 @@ export class MapboxService implements MapServiceInterface {
 
     let markers = new Array<Marker>();
 
+    console.log(">>> DEBUG >>> MARKRS:");
+    console.log(markersData)
     markersData.forEach(marker => {
       let markerMapbox = new Marker();
-      markerMapbox.setLngLat(new mapboxgl.LngLat(marker.lng, marker.lat));
+      markerMapbox.setLngLat(new mapboxgl.LngLat(marker.longitud, marker.latitud));
 
       markerMapbox.getElement().addEventListener('click', (event) => {
 

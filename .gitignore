@@ -93,3 +93,6 @@ out/
 # Mac files
 .DS_Store
 
+# MONOLITO DE PRUEBA
+dacs-api/
+dacs-api/*

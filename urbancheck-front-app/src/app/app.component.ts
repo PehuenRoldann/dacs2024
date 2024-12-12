@@ -25,7 +25,10 @@ export class AppComponent implements OnInit {
     this.role=await this.keycloak.isUserInRole("ROLE-A");
     this.apiService.getTest().subscribe(resp => {this.testResponse= resp});
     this.apiService.getPing().subscribe(resp => {this.apiPing= resp});
-    this.apiService.getConectorPing().subscribe(resp => {this.apiConectorPing= resp});
+  
+    //this.apiService.getConectorPing().subscribe(resp => {this.apiConectorPing= resp});
+    const tokentest = await this.keycloak.getToken() //ACA OBTENGO EL TOQUE QUE ANDA
+    // console.log(tokentest);
     // console.log ("role=====>", this.role );
     
     /* if(this.isLogueado && !this.role){

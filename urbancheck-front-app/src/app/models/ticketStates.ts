@@ -9,6 +9,7 @@ export enum TicketStates {
     Reprogramado = 'Reprogramado',
     Resuleto = 'Resuelto',
     Cerrado = 'Cerrado',
-    Cancelado = 'Cancelado'
+    Cancelado = 'Cancelado',
+    SinEstado = 'Sin Estado'
 
 }

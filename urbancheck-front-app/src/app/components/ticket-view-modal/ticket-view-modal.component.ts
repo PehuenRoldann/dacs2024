@@ -34,18 +34,20 @@ export class TicketViewModalComponent implements OnInit {
       delay(2000);
       this.isAddressLoaded = true;
     })
+
+    this.ticketDataService.ticketData$.subscribe((data) => {
+      this.ticket = data;
+      console.log(this.ticket);
+      this.mapService.UpdateAddressFromCoords(this.ticket.lat, this.ticket.lng);
+      this.isTicketLoaded = true;
+    })
   }
 
 
   GetTicketWithId(id: string): void {
     this.isTicketLoaded = false;
     this.isAddressLoaded = false;
-    this.ticketDataService.GetTicketData(id).subscribe((data) => {
-      this.ticket = data;
-      console.log(this.ticket);
-      this.mapService.UpdateAddressFromCoords(this.ticket.lat, this.ticket.lng);
-      this.isTicketLoaded = true;
-    });
+    this.ticketDataService.UpdateTicketData(id);
     
   }
 
