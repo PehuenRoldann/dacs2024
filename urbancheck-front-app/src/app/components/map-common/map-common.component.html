@@ -15,7 +15,7 @@
 
 
     <nav id="nav-bar">
-        <span class="nav-button"
+        <span class="nav-button" (click)="openModal('profileModal')"
             ><img src="assets/images/Vectorperson.svg" alt=""
         /></span>
         <span class="nav-button"
@@ -75,3 +75,5 @@
 <app-ticket-creation-modal [modalId]="'ticketCrationModal'" (cancelTicket)="removeLastMark($event)"/>
 
 <app-ticket-view-modal [modalId]="'ticketViewModal'"/>
+
+<app-profile-modal [modalId]="'profileModal'" />

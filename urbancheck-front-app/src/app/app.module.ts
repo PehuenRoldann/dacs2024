@@ -20,6 +20,7 @@ import { MapboxService } from './services/mapbox.service';
 import { MAP_SERVICE_INTERFACE_TOKEN } from './interfaces/map.service.interface';
 import { PillComponent } from './components/pill/pill.component';
 import { TicketDataApiService } from './services/ticket-data-api.service';
+import { ProfileModalComponent } from './components/profile-modal/profile-modal.component';
 // import { ReclamoModalComponent } from './components/reclamo-modal/reclamo-modal.component';
 
 @NgModule({
@@ -30,6 +31,7 @@ import { TicketDataApiService } from './services/ticket-data-api.service';
     WelcomeViewComponent,
     TicketViewModalComponent,
     PillComponent,
+    ProfileModalComponent,
     //    ReclamoModalComponent,
   ],
   imports: [
