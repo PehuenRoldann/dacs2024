@@ -37,6 +37,7 @@ export class TicketViewModalComponent implements OnInit {
 
     this.ticketDataService.ticketData$.subscribe((data) => {
       this.ticket = data;
+      console.log("DEBUG >> TICKET DATA: ");
       console.log(this.ticket);
       this.mapService.UpdateAddressFromCoords(this.ticket.lat, this.ticket.lng);
       this.isTicketLoaded = true;

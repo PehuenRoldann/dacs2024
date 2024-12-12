@@ -1,6 +1,6 @@
 /* Modal background color */
 .modal-content {
-    background-color: black;
+    background-color: #6e7f8bec;
     color: white;
     border-radius: 8px;
   }
@@ -66,7 +66,7 @@
    }
   /* Estilo para el botón de cerrar sesión */
   .modal-footer .btn-danger {
-    background-color: red;
+    background-color: rgba(201, 12, 12, 0.986);
     border: none;
   }
   

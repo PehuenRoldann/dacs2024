@@ -4,7 +4,6 @@ import { MapServiceInterface, MAP_SERVICE_INTERFACE_TOKEN } from "src/app/interf
 // import { MapboxService } from "src/app/services/mapbox.service";
 // import { TicketDataJsonService } from "src/app/services/ticket-data-json.service";
 import { TicketViewModalComponent } from "../ticket-view-modal/ticket-view-modal.component";
-import { Marker } from "mapbox-gl";
 import { MarkerData } from "src/app/models/markerData";
 /* import mapboxgl from 'mapbox-gl'; */
 
@@ -78,5 +77,27 @@ export class MapCommonComponent implements OnInit {
 
   public removeLastMark(event?: Event): void {
     this.geoService.removeLastMark();
+  }
+
+
+
+  showAlert(message: string, type: string): void {
+    const alert = document.createElement('div');
+    alert.classList.add('alert', `alert-${type}`, 'alert-dismissible', 'fade', 'show');
+    alert.setAttribute('role', 'alert');
+    alert.innerHTML = `
+      ${message}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    `;
+    document.body.appendChild(alert);
+
+    setTimeout(() => {
+      alert.remove();
+    }, 5000); // La alerta desaparece después de 5 segundos
+  }
+
+  // Método para manejar el evento emitido por el modal
+  onTicketCreated(result: any): void {
+    this.ticketDataService.UpdateMarkersData();
   }
 }

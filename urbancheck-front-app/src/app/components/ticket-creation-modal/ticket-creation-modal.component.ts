@@ -11,11 +11,18 @@ import { Ticket } from 'src/app/models/ticket';
   styleUrls: ['./ticket-creation-modal.component.css'],
 })
 export class TicketCreationModalComponent implements OnInit {
+  
   @Input({ required: true }) modalId!: string;
+  @Output() ticketCreated: EventEmitter<any> = new EventEmitter();
 
   public readonly maxLengthDesc: number = 250;
   public processStep: number = 0;
   public ticket = new Ticket();
+  public res = {
+    exito: "",
+    mensaje: "",
+    src: ""
+  }
 
   public cancelCreation = new EventEmitter();
 
@@ -49,7 +56,6 @@ export class TicketCreationModalComponent implements OnInit {
 
 
   AddTicket() {
-
     const description = this.ticket.description;
     const longitud = this.ticket.lng;
     const latitud = this.ticket.lat;
@@ -59,13 +65,33 @@ export class TicketCreationModalComponent implements OnInit {
       .subscribe({
         next: (ticket: Ticket) => {
           console.log('Ticket creado exitosamente:', ticket);
-          // Aquí puedes actualizar el estado o mostrar un mensaje al usuario
+
+          this.res.exito  = "Exito!";
+          this.res.mensaje = "Ticket creado exitosamente!";
+          this.res.src = "assets/images/like-svgrepo-com.svg";
+          
+          // Emitir el resultado al componente padre
+          this.ticketCreated.emit({
+            success: true,
+            message: "Ticket creado exitosamente."
+          });
         },
         error: (error) => {
           console.error('Error al crear el ticket:', error);
-          // Manejo de errores: muestra un mensaje o registra el error
+
+          this.res.exito  = "Error!";
+          this.res.mensaje = "Ha ocurrido un error al intentar crear el ticket. Prueba otra vez...";
+          this.res.src = "assets/images/emoji-sad-svgrepo-com.svg";
+          
+          // Emitir el resultado de error al componente padre
+          this.ticketCreated.emit({
+            success: false,
+            message: "Error al crear el ticket, pruebe otra vez o contacte con soporte."
+          });
         }
       });
+
+      this.nextStep();
   }
 
 
@@ -106,4 +132,25 @@ export class TicketCreationModalComponent implements OnInit {
 
     return `${day}/${month}/${year} ${hours}:${minutes}`; // Retorna el formato deseado
   }
+
+
+  getMunicipalDependencyLabel(key: string): string {
+    return MunicipalDependencies[key as keyof typeof MunicipalDependencies] || key;
+  }
+
+
+  CanContinue(): boolean {
+
+    if(this.processStep == 0 && this.ticket.dependency == null ) {
+      return false
+    }
+    else if (this.processStep == 1 && this.ticket.description.length < 20) {
+      return false
+    }
+    else {
+      return true
+    }
+
+  }
+
 }
